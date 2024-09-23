@@ -1,4 +1,5 @@
-# StyleGAN-NADA
+# Pomo3D
+https://tzuj6.github.io/Pomo3D
 
 This is the repository that contains source code for the [StyleGAN-NADA website](https://stylegan-nada.github.io).
 It is based on the code from the [Nerfies website](https://nerfies.github.io). If you reuse this code, please credit them.
