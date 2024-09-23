@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="description"
-        content="Adorn Your Free-View Portrait: 3D Portrait Manipulation via Accessory Viable Field">
+        content="Pomo3D: 3D-Aware Portrait Accessorizing and More">
   <meta name="keywords" content="Nerfies, D-NeRF, NeRF">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Adorn Your Free-View Portrait: 3D Portrait Manipulation via Accessory Viable Field</title>
+  <title>Pomo3D: 3D-Aware Portrait Accessorizing and More</title>
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
@@ -88,10 +88,10 @@
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">Adorn Your Free-View Portrait: 3D Portrait Manipulation via Accessory Viable Field</h1>
+          <h1 class="title is-1 publication-title">Pomo3D: 3D-Aware Portrait Accessorizing and More</h1>
           <div class="is-size-5 publication-authors">
             <span class="author-block">Tzu-Chieh Liu, </span>
-            <span class="author-block">Wei-Chih Tu, </span>
+            <span class="author-block">Chih-Ting Liu, </span>
             <span class="author-block">Shao-Yi Chien</span>
             <!-- <span class="author-block">
               <a href="https://utkarshsinha.com">Utkarsh Sinha</a><sup>2</sup>,</span>
@@ -190,17 +190,9 @@
         </div>
       </div>
       <p>
-        (A) To model the placement of accessories on portraits, we separately construct two distinct radiance fields:
-        <i>portrait geometry field</i> and <i>accessory viable field</i>. By feeding different accessory geometry styles 
-        into <i>accessory viable field</i>, a wide variety of personalized accessories can be generated given a reference face.
-      </p>
-      <p>
-        (B) <i>FOVAD</i> can generate accessories or beards based on users' unstructured doodles, as illustrated in the yellow stroke of the thumbnail.
-      </p>
-      <p>
-        (C) <i>FOVAD</i> allows for localized texture editing and can also apply intra- or inter-domain global stylization. 
-        Moreover, as our model re-combines portraits and accessories, it can produce out-of-distribution (OOD) results, 
-        such as a man wearing earrings, a woman with a beard, or multiple accessories simultaneously.
+        Through user-drawn shapes of scribbles (top row) and diverse texture selections, <b><i>Pomo3D</i> can generate personalized accessories on specified avatars.</b>
+        These scribble maps can be directly drawn within our provided GUI, and multiple scribbles can be stacked together to achieve multiple accessories worn concurrently.
+        All the results are multi-view consistent and operate at an interactive frame rate. 
       </p>
     </div>
   </div>
@@ -329,14 +321,22 @@
         </div>
       </div>
       <p>
-        Only a single scene-shared representation is utilized for separate modeling of portraits and accessories, based on the assumption 
-        that there is a high degree of spatial similarity between the two scenes. Therefore, a feature adaptor is used to transform scene-shared features between the portrait and accessory spaces.
+        <b>(a) Generation of dual geometry tri-planes:</b> we construct two tri-planes for the geometry modeling of portraits and accessories. We then obtain the projected feature maps and corresponding semantic maps via volume rendering.
       </p>
-    
-    
+      <p>
+        <b>(b) Structure-guided texture renderer:</b> next, the structure encoder and texture renderer fuse the two projected feature maps and yield the output image. The variable <i>Accs</i> indicates whether the accessory is worn on the portrait, and thus there are two possible outcomes.
+      </p>
+      <p>
+        <b>(c) Bias-conscious mapper:</b> considering the biases in existing datasets, a bias-conscious mapper is proposed to map Gaussian noise into four latent codes for corresponding attributes.
+      </p>
+      <p>
+        <b>(d) Data preparation and training scheme:</b> PAC-Mask consists of three data groups: accessory semantic maps, portrait semantic maps, and overall RGB images. During training, we use three different discriminators along with these three data groups to conduct adversarial learning on the three branches of the network.
+      </p>
     </div>
   </div>
 </section>
+
+<br/>
 
 
 <!-- <section class="hero is-light is-small">
@@ -401,11 +401,16 @@
 
 
 <section class="hero is-light is-small">
-  <div class="hero-body">
     <div class="columns is-centered">
       <div class="column is-two-fifths">
         <div class="container">
           <div id="results-carousel-church" class="carousel results-carousel">
+            <div class="item item-huts">
+              <div class="carousel-content">
+                <img src="static/images/F32-1.png"
+                     alt="Huts."/>
+              </div>
+            </div>
             <div class="item item-huts">
               <div class="carousel-content">
                 <img src="static/images/pose1.png"
@@ -443,6 +448,9 @@
       </div>
     </div>
   </div>
+
+  
+  
 </section>
 
 <br/>
@@ -451,7 +459,7 @@
 <section class="hero teaser">
   <div class="container is-max-desktop">
     <div class="hero-body">
-        <!--/ Architecture. -->
+
         <div class="section-title">
           <h2 class="title is-4 is-centered">Smooth Transition Between Global Styles</h2>
         </div>
@@ -475,6 +483,242 @@
     </div>
   </div>
 </section>
+
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="columns is-centered">
+      <div class="column is-two-fifths">
+        <div class="section-title">
+          <h2 class="title is-5 is-centered">Accessory Wearing on Stylized Portraits</h2>
+        </div>
+        <div class="container">
+          <div id="results-carousel-church" class="carousel results-carousel">
+            <div class="item item-huts">
+              <div class="carousel-content">
+                <img src="static/images/F31-1_1.png"
+                     alt="Huts."/>
+              </div>
+            </div>
+            <div class="item item-huts">
+              <div class="carousel-content">
+                <img src="static/images/F31-1_2.png"
+                     alt="Huts."/>
+              </div>
+            </div>            
+          </div>
+        </div>
+      </div>
+      <div class="column is-two-fifths">
+        <div class="section-title">
+          <h2 class="title is-5 is-centered">Create Accessories from Random Codes or User's Scribble</h2>
+        </div>
+        <div class="container">
+          <div id="results-carousel-dog" class="carousel results-carousel">
+            <div class="item item-joker">
+              <div class="carousel-content">
+                <img src="static/images/F5-1.png"
+                     alt="Joker."/>
+              </div>
+            </div>
+            <div class="item item-cage">
+              <div class="carousel-content">
+                <img src="static/images/F22-1.png"
+                     alt="Cage."/>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<br/>
+<br/>
+
+<!-- 
+
+<section class="hero teaser">
+  <div class="hero-body">
+
+    <div class="section-title">
+      <h2 class="title is-4 is-centered">Accessory Wearing on Stylized Portraits</h2>
+    </div>
+
+  <div class="hero-body">
+    <div class="container">
+      <div id="results-carousel-face" class="carousel results-carousel">
+        <div class="item item-sketch-hq">
+          <div class="carousel-content">
+            <img src="static/images/F31-1_1.png"
+                   alt="Sketch."/>
+           
+          </div>
+        </div>
+        <div class="item item-modegliani">
+          <div class="carousel-content">
+            <img src="static/images/F31-1_2.png"
+                   alt="Modegliani."/>
+          
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="hero-body">
+
+    <div class="section-title">
+      <h2 class="title is-4 is-centered">Scribble2Accessories</h2>
+    </div>
+
+  <div class="hero-body">
+    <div class="container">
+      <div id="results-carousel-face" class="carousel results-carousel">
+        <div class="item item-sketch-hq">
+          <div class="carousel-content">
+            <img src="static/images/F5-1.png"
+                   alt="Sketch."/>
+           
+          </div>
+        </div>
+        <div class="item item-modegliani">
+          <div class="carousel-content">
+            <img src="static/images/F22-1.png"
+                   alt="Modegliani."/>
+          
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+
+        <div class="section-title">
+          <h2 class="title is-4 is-centered">Fine-Grained Texture Adjustment</h2>
+        </div>
+        <p>
+            
+        </p>
+        
+    <div class="hero-body">
+      <div class="columns is-centered has-text-centered">
+        <div class="column">
+          <div class="publication-img">
+            <img id="architecture" src="static/images/F23-1.png"/>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- <section class="hero teaser">
+  <div class="hero-body">
+
+    <div class="section-title">
+      <h2 class="title is-4 is-centered">Diverse Shape and Texture</h2>
+    </div>
+
+  <div class="hero-body">
+    <div class="container">
+      <div id="results-carousel-face" class="carousel results-carousel">
+        <div class="item item-sketch-hq">
+          <div class="carousel-content">
+            <img src="static/images/F33-1 (1).png"
+                   alt="Sketch."/>
+           
+          </div>
+        </div>
+        <div class="item item-modegliani">
+          <div class="carousel-content">
+            <img src="static/images/F33-1 (2).png"
+                   alt="Modegliani."/>
+          
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+
+      <div class="section-title">
+        <h2 class="title is-4 is-centered">Diverse Shape and Texture for Beard and Accessories</h2>
+      </div>
+
+    <div class="columns is-centered">
+
+  
+      <div class="column">
+        <div class="content">
+            <div class="publication-img">
+              <img id="celeb_edits" src="static/images/F33-1 (1).png"/>
+            </div>
+        </div>
+      </div>
+    
+      <div class="column">
+        <div class="columns is-centered">
+          <div class="column content">
+            <div class="publication-img">
+              <img id="pitt_editing" src="static/images/F33-1 (2).png"/>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <p>
+      On the left are the source images, and on the right, we show the source images with various shapes of beards and earrings, paired with two different texture codes. 
+      This allows users to create virtual avatars with unique and personalized accessories.
+    </p>
+    
+  </div>
+</section>
+
+
+<br/>
+
+<section class="hero is-light is-small">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+
+        <div class="section-title">
+          <h2 class="title is-4 is-centered">Inter- and Intra-domain Stylization</h2>
+        </div>
+        
+      <div class="container is-max-desktop">
+        <!-- Training video. -->
+        <div class="columns is-centered has-text-centered">
+          <!-- <div class="column is-four-fifths"> -->
+            <div class="column">
+              <div class="publication-img">
+                <img id="architecture" src="static/images/F16-1.png"/>
+              </div>
+            </div>
+    
+          <!-- </div> -->
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+
+
 
 
 <section class="section" id="BibTeX">
