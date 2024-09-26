@@ -6,7 +6,11 @@ It is based on the code from the [Nerfies website](https://nerfies.github.io). I
 
 If you find Pomo3D useful for your work please cite:
 ```
-@article{placeholder
+@article{liu2024pomo3d,
+  title={Pomo3D: 3D-Aware Portrait Accessorizing and More},
+  author={Liu, Tzu-Chieh and Liu, Chih-Ting and Chien, Shao-Yi},
+  journal={arXiv preprint arXiv:2409.14430},
+  year={2024}
 }
 ```
 
